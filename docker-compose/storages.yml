@@ -1,0 +1,52 @@
+version: "3.5"
+
+
+services:
+  #================================
+  #      POSTGRESQL DATABASE
+  #================================
+  country-django-graphql-example-postgresql:
+    container_name: country-django-graphql-example-postgresql
+    image: postgres:12-alpine
+    hostname: country-django-graphql-example-postgresql
+    ports:
+      - 5432:5432
+    volumes:
+      - ../.data/country-django-graphql-example-postgresql:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=django
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=django-db
+    networks:
+      - country-django-graphql-example-network
+    restart: always
+    
+
+  #================================
+  #    POSTGRESQL DATABASE GUI
+  #================================
+  country-django-graphql-example-postgresql-gui:
+    container_name: country-django-graphql-example-postgresql-gui
+    image: dpage/pgadmin4
+    hostname: country-django-graphql-example-postgresql-gui
+    ports:
+      - 5050:80
+    volumes:
+       - ../.data/pgadmin:/root/.pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=password
+    depends_on:
+      - country-django-graphql-example-postgresql
+    networks:
+      - country-django-graphql-example-network
+    restart: always
+
+
+#================================
+#         NETWORK
+#================================
+networks:
+  country-django-graphql-example-network:
+    external:
+      name: country-django-graphql-example-network
