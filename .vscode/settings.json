@@ -1,0 +1,5 @@
+{
+    "coverage-gutters.manualCoverageFilePaths": [
+        "/workspaces/country-django-graphql-example/cov.xml"
+    ]
+}

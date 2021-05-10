@@ -22,7 +22,8 @@
 		"python.testing.pytestPath": "/usr/local/py-utils/bin/pytest"
 	},
 	"extensions": [
-		"ms-python.python"
+		"ms-python.python",
+		"ryanluker.vscode-coverage-gutters"
 	],
 	"runArgs": ["--network=country-django-graphql-example-network"],
 	"forwardPorts": [8000],
