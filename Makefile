@@ -17,3 +17,11 @@ setup-dev:
 testing:
 	pytest --cov-report xml:cov.xml --cov .
 	
+
+#TODO isort + black
+.PHONY: linting
+linting:
+	autopep8 --aggressive --experimental -r -i ./project
+	black --fast ./project
+	isort ./project
+	flake8 ./project
