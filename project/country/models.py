@@ -16,8 +16,9 @@ class City(models.Model):
         Country,
         verbose_name="Страна",
         related_name="cities",
-        null=True, blank=True,
-        on_delete=models.CASCADE
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
     )
 
     def __str__(self) -> str:

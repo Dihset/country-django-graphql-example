@@ -14,3 +14,5 @@ flake8-django
 pytest==6.2.4
 pytest-cov==2.11.1
 pytest-django==4.2.0
+autopep8==1.5.7
+black==21.5b1

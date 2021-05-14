@@ -18,5 +18,5 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("graphql", include("project.graphql.urls")),
+    path("graphql/", include("project.graphql.urls")),
 ]

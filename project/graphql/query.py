@@ -1,5 +1,7 @@
+import graphene
 from graphene import ObjectType, relay
 from graphene_django import DjangoObjectType
+from graphene_django.debug import DjangoDebug
 from graphene_django.filter import DjangoFilterConnectionField
 
 from project.country.models import City as CityModel
@@ -11,7 +13,7 @@ class CountryType(DjangoObjectType):
         model = CountryModel
         fields = ("id", "name", "population", "cities")
         filter_fields = {}
-        interfaces = (relay.Node, )
+        interfaces = (relay.Node,)
 
 
 class CityType(DjangoObjectType):
@@ -19,7 +21,7 @@ class CityType(DjangoObjectType):
         model = CityModel
         fields = ("id", "name", "population", "country")
         filter_fields = {}
-        interfaces = (relay.Node, )
+        interfaces = (relay.Node,)
 
 
 class Query(ObjectType):
@@ -27,3 +29,4 @@ class Query(ObjectType):
     country = relay.Node.Field(CountryType)
     all_cities = DjangoFilterConnectionField(CityType)
     city = relay.Node.Field(CityType)
+    debug = graphene.Field(DjangoDebug, name="_debug")

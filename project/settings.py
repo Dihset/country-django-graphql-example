@@ -127,5 +127,8 @@ USE_TZ = True
 STATIC_URL = "/static/"
 
 GRAPHENE = {
-    "SCHEMA": "project.graphql.schema.schema"
+    "SCHEMA": "project.graphql.schema.schema",
+    "MIDDLEWARE": [
+        "graphene_django.debug.DjangoDebugMiddleware",
+    ],
 }
