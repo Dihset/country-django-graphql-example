@@ -1,10 +1,10 @@
 import graphene
-from graphql_relay.node.node import from_global_id
 
-from project.country.models import Country as CountryModel
 from project.country.models import City as CityModel
+from project.country.models import Country as CountryModel
 
 from .query import CityType, CountryType
+from .utils import CustomNode
 
 
 class CreateCountry(graphene.Mutation):
@@ -31,7 +31,7 @@ class CreateCity(graphene.Mutation):
 
     @classmethod
     def mutate(cls, root, info, name: str, population: int, country_id: str):
-        _type, country_pk = from_global_id(country_id)
+        _type, country_pk = CustomNode.from_global_id(country_id)
         if _type != CountryType.__name__:
             raise Exception("Some_error")
         country = CountryModel.objects.filter(pk=country_pk).first()

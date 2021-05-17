@@ -4,11 +4,19 @@ from .models import City, Country
 
 
 class CountryAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        "pk",
+        "name",
+        "population",
+    )
 
 
 class CityAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        "pk",
+        "name",
+        "population",
+    )
 
 
 admin.site.register(Country, CountryAdmin)
