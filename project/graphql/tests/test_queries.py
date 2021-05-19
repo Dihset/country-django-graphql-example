@@ -37,7 +37,7 @@ def test_get_one_country(client_query, country_1):
 def test_get_one_city(client_query, city_1):
     query = """
         query ($cityId: ID!) {
-            city(id: $countryId) {
+            city(id: $cityId) {
                 name
                 population
             }
@@ -46,4 +46,6 @@ def test_get_one_city(client_query, city_1):
     variables = {"cityId": f"CityType:{city_1.pk}"}
     response = client_query(query, variables=variables)
     content = response.json()
-    assert content["data"]["country"] == factory_to_dict(city_1, exclude=["id"])
+    assert content["data"]["city"] == factory_to_dict(
+        city_1, exclude=["id", "country_id"]
+    )
