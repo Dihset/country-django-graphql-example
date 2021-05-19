@@ -16,7 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from project.graphql.consumers import GraphqlWsConsumer
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("graphql/", include("project.graphql.urls")),
+]
+
+asgi_urlpatterns = [
+    path("graphql/", GraphqlWsConsumer.as_asgi()),
 ]
