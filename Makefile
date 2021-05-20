@@ -1,5 +1,5 @@
 DC=docker-compose
-
+MY_PWD=/home/dihset/Documents/opensource/country-django-graphql-example
 
 .PHONY: create-network
 create-network:
@@ -19,6 +19,7 @@ setup-dev:
 .PHONY: testing
 testing:
 	pytest --cov-report xml:cov.xml --cov .
+	sed -i 's#${PWD}#${MY_PWD}#g' ./cov.xml
 
 
 .PHONY: linting
