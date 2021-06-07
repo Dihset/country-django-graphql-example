@@ -1,5 +1,6 @@
 {
     "coverage-gutters.manualCoverageFilePaths": [
         "/workspaces/country-django-graphql-example/cov.xml"
-    ]
+    ],
+    "python.pythonPath": "/root/.cache/pypoetry/virtualenvs/country-django-graphql-example-jRN5EGUQ-py3.8/bin/python"
 }

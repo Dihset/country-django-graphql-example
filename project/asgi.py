@@ -13,11 +13,10 @@ import channels
 import django
 from django.core.asgi import get_asgi_application
 
-from .urls import asgi_urlpatterns
-
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
 asgi_app = get_asgi_application()
 
+from .urls import asgi_urlpatterns
 
 application = channels.routing.ProtocolTypeRouter(
     {

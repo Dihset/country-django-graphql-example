@@ -27,6 +27,4 @@
 	],
 	"runArgs": ["--network=country-django-graphql-example-network"],
 	"forwardPorts": [8000],
-	"postCreateCommand": "sudo pip install -r requirements.txt && sudo pip3 install -r requirements.dev.txt",
-	"remoteUser": "vscode"
 }

@@ -11,20 +11,25 @@ up-storages:
 	${DC} -f docker-compose/storages.yml up -d
 
 
+.PHONY: build
+build:
+	docker build -t country-django-graphql-example-django .
+
+
 .PHONY: setup-dev
 setup-dev:
-	./manage.py runserver 0.0.0.0:8000
+	poetry run python manage.py runserver 0.0.0.0:8000
 
 
 .PHONY: testing
 testing:
-	pytest --cov-report xml:cov.xml --cov .
+	poetry run pytest --cov-report xml:cov.xml --cov .
 	sed -i 's#${PWD}#${MY_PWD}#g' ./cov.xml
 
 
 .PHONY: linting
 linting:
-	autopep8 --aggressive --experimental -r -i ./project
-	black --fast ./project
-	isort ./project
-	flake8 ./project
+	poetry run autopep8 --aggressive --experimental -r -i ./project
+	poetry run black --fast ./project
+	poetry run isort ./project
+	poetry run pflake8 ./project

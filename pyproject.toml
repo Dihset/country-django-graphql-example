@@ -1,3 +1,48 @@
+[tool.poetry]
+name = "country-django-graphql-example"
+version = "0.1.0"
+description = ""
+authors = ["Egor Slamihin <e.slamihin@zebrains.team>"]
+
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Django = "^3.2.4"
+psycopg2-binary = "^2.8.6"
+graphene-django = "^2.15.0"
+django-filter = "^2.4.0"
+channels = "^3.0.3"
+channels-redis = "^3.2.0"
+django-channels-graphql-ws = "^0.8.0"
+daphne = "^3.0.2"
+whitenoise = "^5.2.0"
+
+[tool.poetry.dev-dependencies]
+ipython = "^7.24.1"
+flake8 = "^3.9.2"
+flake8-isort = "^4.0.0"
+flake8-docstrings = "^1.6.0"
+flake8-builtins = "^1.5.3"
+flake8-quotes = "^3.2.0"
+flake8-bugbear = "^21.4.3"
+flake8-comprehensions = "^3.5.0"
+flake8-eradicate = "^1.0.0"
+flake8-pep3101 = "^1.3.0"
+flake8-print = "^4.0.0"
+flake8-super = "^0.1.3"
+flake8-django = "^1.1.2"
+pytest = "^6.2.4"
+pytest-cov = "^2.12.1"
+pytest-django = "^4.4.0"
+pytest-factoryboy = "^2.1.0"
+autopep8 = "^1.5.7"
+black = "^21.5b2"
+pyproject-flake8 = "^0.0.1-alpha.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.black]
 line-length = 88
 target-version = ['py38']
@@ -6,6 +51,67 @@ include = '\.pyi?$'
 [tool.isort]
 profile = "black"
 line_length = 88
+skip_glob = """
+    */migrations/*,
+    manage.py,
+    project/asgi.py,
+    project/wsgi.py,
+"""
 
 [tool.autopep8]
 max_line_length = 88
+exclude = """
+    */migrations/*,
+    manage.py,
+    asgi.py,
+    wsgi.py,
+"""
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "project.settings"
+python_files = "tests.py test_*.py *_tests.py"
+
+[tool.flake8]
+#? E203 whitespace before ':'
+# E501 Line too long (82 &gt; 79 characters)
+#? W503 line break before binary operator
+# D100 Missing docstring in public module
+# D101 Missing docstring in public class
+# D102 Missing docstring in public method
+# D103 Missing docstring in public function
+# D104 Missing docstring in public package
+# D105 Missing docstring in magic method
+# D106 Missing docstring in public nested class
+# D107 Missing docstring in __init__
+# C901 ... is too complex
+# Q000 Remove bad quotes
+# Q001 Remove bad quotes from multiline string
+# Q002 Remove bad quotes from docstring
+# Q003 Change outer quotes to avoid escaping inner quotes
+# flake8-string-format:
+# P101 format string does contain unindexed parameters
+# P103 other string does contain unindexed parameters
+# flake8-django:
+# DJ01 Avoid using null=True on string-based fields such as CharField and TextField
+# Temporary rules:
+#? F403 'from module import *' used; unable to detect undefined names
+#? F405 Name may be undefined, or defined from star imports: module
+
+extend-ignore = "E501,D100,D101,D102,D103,D104,D105,D106,D107,C901,P101,P103,DJ01"
+max-line-length = 88
+max-complexity = 10
+statistics = "True"
+count = "True"
+
+# flake8-quotes settings
+inline-quotes = '"'
+multiline-quotes = '"""'
+docstring-quotes = '"""'
+avoid-escape = 'True'
+
+exclude = """
+    */migrations/*,
+    manage.py,
+    project/asgi.py,
+    project/wsgi.py,
+"""
