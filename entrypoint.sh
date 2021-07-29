@@ -1,6 +1,6 @@
 #!/bin/sh
 
 
-poetry run python manage.py migrate
-poetry run python manage.py collectstatic --noinput
-poetry run daphne -p 8080 -b 0.0.0.0 project.asgi:application
+python -m poetry run python manage.py migrate
+python -m poetry run python manage.py collectstatic --noinput
+python -m poetry run daphne -p ${PORT:-8080} -b ${HOST:-0.0.0.0} project.asgi:application
