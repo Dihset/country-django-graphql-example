@@ -92,7 +92,7 @@ DATABASES = {
         "NAME": os.getenv("DB_NAME", "django-db"),
         "USER": os.getenv("DB_USER", "django"),
         "PASSWORD": os.getenv("DB_PASSWORD", "password"),
-        "HOST": os.getenv("DB_HOST", "country-django-graphql-example-postgresql"),
+        "HOST": os.getenv("DB_HOST", "pg-master"),
         "PORT": int(os.getenv("DB_PORT", 5432)),
     }
 }

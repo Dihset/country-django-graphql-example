@@ -29,7 +29,7 @@ testing:
 
 .PHONY: linting
 linting:
-	poetry run autopep8 --aggressive --experimental -r -i ./project
-	poetry run black --fast ./project
-	poetry run isort ./project
-	poetry run pflake8 ./project
+	python -m poetry run autopep8 --aggressive --experimental -r -i ./project
+	python -m poetry run black --fast ./project
+	python -m isort ./project
+	python -m pflake8 ./project

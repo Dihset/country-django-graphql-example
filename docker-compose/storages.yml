@@ -5,22 +5,29 @@ services:
   #================================
   #      POSTGRESQL DATABASE
   #================================
-  country-django-graphql-example-postgresql:
-    container_name: country-django-graphql-example-postgresql
-    image: postgres:12-alpine
-    hostname: country-django-graphql-example-postgresql
-    ports:
-      - 5432:5432
-    volumes:
-      - ../.data/country-django-graphql-example-postgresql:/var/lib/postgresql/data/
+  pg_master:
+    build: ../postgres/master
+    hostname: pg-master
     environment:
       - POSTGRES_USER=django
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=django-db
+      - PG_REP_USER=django_rep
+      - PG_REP_PASSWORD=password
     networks:
       - country-django-graphql-example-network
-    restart: always
-    
+  pg_slave:
+    hostname: pg-slave
+    build: ../postgres/slave
+    environment:
+      - POSTGRES_USER=django
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=django-db
+      - PG_REP_USER=django_rep
+      - PG_REP_PASSWORD=password
+      - PG_MASTER_HOST=pg-master
+    networks:
+      - country-django-graphql-example-network
 
   #================================
   #    POSTGRESQL DATABASE GUI
@@ -37,7 +44,7 @@ services:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.com
       - PGADMIN_DEFAULT_PASSWORD=password
     depends_on:
-      - country-django-graphql-example-postgresql
+      - pg_master
     networks:
       - country-django-graphql-example-network
     restart: always
