@@ -2,8 +2,9 @@ from .loaders import CityByCountryIdLoader, CountryByIdLoader
 
 
 class Loaders:
-    country_by_id = CountryByIdLoader()
-    city_by_country_id = CityByCountryIdLoader()
+    def __init__(self):
+        self.country_by_id = CountryByIdLoader()
+        self.city_by_country_id = CityByCountryIdLoader()
 
 
 class LoaderMiddleware:
