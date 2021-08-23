@@ -147,7 +147,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 GRAPHENE = {
     "SCHEMA": "project.graphql.schema.schema",
     "MIDDLEWARE": [
-        "project.graphql.middlewares.LoaderMiddleware",
+        "project.graphql.middlewares.loader_middleware",
         "graphene_django.debug.DjangoDebugMiddleware",
     ],
 }
